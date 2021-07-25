@@ -12,5 +12,6 @@ namespace TpUbiComp.Models
         public int Id { get; set; }
         public Application Application { get; set; }
         public Locale Locale { get; set; }
+        public string Url { get; set; }
     }
 }
