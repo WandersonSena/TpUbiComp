@@ -24,6 +24,22 @@ namespace TpUbiComp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddWebOptimizer(pipeline =>
+            {
+                pipeline.AddJavaScriptBundle("/js/bundles/templateGeeksBundle.js",
+                    "lib/inputmask/dist/inputmask.min.js",
+                    "lib/template-geeks/js/chart.js",
+                    "lib/template-geeks/js/chat.js",
+                    "lib/template-geeks/js/main.js",
+                    "lib/template-geeks/js/pricing.js",
+                    "lib/template-geeks/js/sidebarMenu.js",
+                    "lib/template-geeks/js/tnsSlider.js");
+
+                pipeline.AddCssBundle("/css/bundles/templateGeeksBundle.css",
+                    "lib/template-geeks/css/theme.css");
+
+                pipeline.MinifyJsFiles("/js/bundles/templateGeeksBundle.js");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +55,7 @@ namespace TpUbiComp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseWebOptimizer();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

@@ -19,7 +19,7 @@ namespace TpUbiComp.Controllers
         }
 
         public IActionResult Index()
-        {
+        {            
             return View();
         }
 
