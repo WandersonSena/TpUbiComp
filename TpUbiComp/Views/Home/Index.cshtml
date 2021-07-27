@@ -1,11 +1,48 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Login";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container d-flex flex-column">
+    <div class="row align-items-center justify-content-center no-gutters min-vh-100">
+        <div class="col-lg-5 col-md-8 py-8 py-xl-0">
+            <!-- Card -->
+            <div class="card shadow ">
+                <!-- Card body -->
+                <div class="card-body p-6">
+                    <div class="mb-4">
+                        <h1 class="mb-1 font-weight-bold">Smart Mobility</h1>
+                        <span>Ainda não possui uma conta? <a href="sign-up.html" class="ml-1">Crie uma conta aqui</a></span>
+                    </div>
+                    <!-- Form -->
+                    <form>
+                        <!-- Username -->
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" id="email" class="form-control" name="email" placeholder="Email" required="">
+                        </div>
+                        <!-- Password -->
+                        <div class="form-group">
+                            <label for="password" class="form-label">Senha</label>
+                            <input type="password" id="password" class="form-control" name="password" placeholder="**************" required="">
+                        </div>
+                        <!-- Checkbox -->
+                        <div class="d-lg-flex justify-content-between align-items-center mb-4">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="rememberme">
+                                <label class="custom-control-label " for="rememberme">Lembrar login</label>
+                            </div>
+                            <div>
+                                <a href="forget-password.html">Esqueci minha senha</a>
+                            </div>
+                        </div>
+                        <div>
+                            <!-- Button -->
+                            <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-<iframe src="https://moovitapp.com/belo_horizonte-843/poi/en" title="Moovit"></iframe>
  
