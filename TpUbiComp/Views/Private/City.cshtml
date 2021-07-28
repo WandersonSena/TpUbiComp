@@ -1,0 +1,41 @@
+﻿@using TpUbiComp.Models.View_Models
+@{ 
+    CityModel viewModel;
+    try
+    {
+        viewModel = (CityModel)ViewData["Model"];
+    }
+    catch
+    {
+        viewModel = new CityModel();
+    }
+}
+<div class="w-100 px-3 py-3">
+    <h4>@viewModel.CityName</h4>
+    <br />
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        @for (var count = 0; count < viewModel.ApplicationList.Count; count++)
+        {
+            <li class="nav-item">
+                <a class="nav-link active" id="application-@count-tab" data-toggle="pill" href="#application-@count" role="tab" aria-controls="pills-home" aria-selected="true">@viewModel.ApplicationList[count].ApplicationName</a>
+            </li>
+        }
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+        @for (var count = 0; count < viewModel.ApplicationList.Count; count++)
+        {
+            if (count == 0)
+            {
+                <div class="tab-pane fade show active" id="application-@count" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <iframe src="@viewModel.ApplicationList[count].ApplicationUrl"></iframe>
+                </div>
+            }
+            else
+            {
+                <div class="tab-pane fade" id="application-@count" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <iframe src="@viewModel.ApplicationList[count].ApplicationUrl"></iframe>
+                </div>
+            }
+        }
+    </div>
+</div>
