@@ -36,7 +36,8 @@ namespace TpUbiComp
                     "lib/template-geeks/js/tnsSlider.js");
 
                 pipeline.AddCssBundle("/css/bundles/templateGeeksBundle.css",
-                    "lib/template-geeks/css/theme.css");
+                    "lib/template-geeks/css/theme.css",
+                    "lib/template-geeks/css/custom.css");
 
                 pipeline.MinifyJsFiles("/js/bundles/templateGeeksBundle.js");
             });
