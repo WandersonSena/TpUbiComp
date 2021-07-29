@@ -32,7 +32,7 @@ namespace TpUbiComp.Controllers
                 var avaliableApps = new List<ApplicationModel>();
                 avaliableApps.Add(new ApplicationModel() { ApplicationName = "Moovit", ApplicationUrl = "https://moovitapp.com/sao_paulo-242/poi/en" });
                 avaliableApps.Add(new ApplicationModel() { ApplicationName = "Trafi", ApplicationUrl = "https://web.trafi.com/br/saopaulo" });
-                avaliableApps.Add(new ApplicationModel() { ApplicationName = "CityMapper", ApplicationUrl = "https://citymapper.com/directions?startcoord=-23.550377%2C-46.633962&endcoord=-23.550377%2C-46.633962&startname=Pra%C3%A7a+da+S%C3%A9&endname=Pra%C3%A7a+da+S%C3%A9&startaddress=Pra%C3%A7a+da+S%C3%A9%2C+S%C3%A3o+Paulo&endaddress=Pra%C3%A7a+da+S%C3%A9%2C+S%C3%A3o+Paulo" });
+                avaliableApps.Add(new ApplicationModel() { ApplicationName = "CityMapper", ApplicationUrl = "https://citymapper.com/sao-paulo" });
                 model.ApplicationList = avaliableApps;
                 ViewData["Model"] = model;
                 return View();
@@ -43,6 +43,17 @@ namespace TpUbiComp.Controllers
                 var avaliableApps = new List<ApplicationModel>();
                 avaliableApps.Add(new ApplicationModel() { ApplicationName = "Moovit", ApplicationUrl = "https://moovitapp.com/rio_de_janeiro-322/poi/en" });
                 avaliableApps.Add(new ApplicationModel() { ApplicationName = "Trafi", ApplicationUrl = "https://web.trafi.com/br/rio" });
+                model.ApplicationList = avaliableApps;
+                ViewData["Model"] = model;
+                return View();
+            }
+            else if (idCity == 4)
+            {
+                model.CityName = "Paris";
+                var avaliableApps = new List<ApplicationModel>();
+                avaliableApps.Add(new ApplicationModel() { ApplicationName = "Moovit", ApplicationUrl = "https://moovitapp.com/paris-662/poi/en" });
+                avaliableApps.Add(new ApplicationModel() { ApplicationName = "CityMapper", ApplicationUrl = "https://citymapper.com/paris?set_region=fr-paris" });
+                avaliableApps.Add(new ApplicationModel() { ApplicationName = "Vélib", ApplicationUrl = "https://www.velib-metropole.fr/pt/map#/" });
                 model.ApplicationList = avaliableApps;
                 ViewData["Model"] = model;
                 return View();
