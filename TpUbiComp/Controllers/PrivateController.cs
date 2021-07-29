@@ -50,5 +50,10 @@ namespace TpUbiComp.Controllers
             ViewData["Model"] = new CityModel();
             return View();
         }
+
+        public IActionResult Profile()
+        {
+            return View();
+        }
     }
 }

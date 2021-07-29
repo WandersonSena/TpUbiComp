@@ -16,7 +16,7 @@
                     <form>
                         <!-- City -->
                         <div class="form-group">
-                            <select class="selectpicker" data-width="100%">
+                            <select class="selectpicker city-selector" data-width="100%">
                                 <option value="">Selecionar Cidade</option>
                                 <option value="1">Belo Horizonte</option>
                                 <option value="2">São Paulo</option>
@@ -25,7 +25,7 @@
                         </div>                        
                         <div>
                             <!-- Button -->
-                            <button type="submit" class="btn btn-primary btn-block">Escolher</button>
+                            <button type="button" class="btn btn-primary btn-block btn-select-city">Escolher</button>
                         </div>
                     </form>
                 </div>
@@ -33,3 +33,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $(".btn-select-city").click(() => {
+            var selectedCity = $('.selectpicker').val();
+            window.location.assign(`/Private/City?idCity=${selectedCity}`);
+        })
+    });    
+</script>
