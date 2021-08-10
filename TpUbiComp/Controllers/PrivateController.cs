@@ -1,15 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TpUbiComp.Data;
 using TpUbiComp.Models.View_Models;
 
 namespace TpUbiComp.Controllers
 {
     public class PrivateController : Controller
     {
+        private readonly UserContext _userContext;
+
+        public PrivateController(UserContext userContext)
+        {
+            _userContext = userContext;
+        }
+
         public IActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Login()
         {
             return View();
         }
