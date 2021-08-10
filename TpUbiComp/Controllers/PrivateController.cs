@@ -26,6 +26,7 @@ namespace TpUbiComp.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            var user = this._userContext.User.Where(u => u.Email == "" && u.Password == "").FirstOrDefault();
             return View();
         }
 
