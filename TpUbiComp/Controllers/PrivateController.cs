@@ -13,9 +13,9 @@ namespace TpUbiComp.Controllers
     {
         private readonly UserContext _userContext;
 
-        public PrivateController(UserContext userContext)
+        public PrivateController(/*UserContext userContext*/)
         {
-            _userContext = userContext;
+            _userContext = new UserContext();
         }
 
         public IActionResult Index()
@@ -26,7 +26,7 @@ namespace TpUbiComp.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            var user = this._userContext.User.Where(u => u.Email == "" && u.Password == "").FirstOrDefault();
+            //var user = _userContext.User.Where(u => u.Email == "" && u.Password == "").FirstOrDefault();
             return View();
         }
 

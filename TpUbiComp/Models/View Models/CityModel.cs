@@ -7,6 +7,7 @@ namespace TpUbiComp.Models.View_Models
 {
     public class CityModel
     {
+        public int CityId { get; set; }
         public string CityName { get; set; }
         public List<ApplicationModel> ApplicationList { get; set; }
     }
