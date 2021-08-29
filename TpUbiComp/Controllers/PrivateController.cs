@@ -82,5 +82,10 @@ namespace TpUbiComp.Controllers
         {
             return View();
         }
+
+        public IActionResult BuyCredits()
+        {
+            return View();
+        }
     }
 }

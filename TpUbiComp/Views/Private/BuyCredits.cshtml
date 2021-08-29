@@ -1,0 +1,217 @@
+﻿<partial name="~/Views/Shared/_PrivateNavbar.cshtml" />
+
+<div class="py-lg-6 py-4 bg-primary">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-12">
+                <div>
+                    <h1 class="text-white display-4 mb-0">Pagamento</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="py-6">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-8 col-lg-8 col-md-12 col-12">
+                <!-- Card -->
+                <div class="card  mb-4">
+                    <!-- Card header -->
+                    <div class="card-header">
+                        <h3 class="mb-0">Dados de Cobrança</h3>
+                    </div>
+                    <!-- Card body -->
+                    <div class="card-body">
+                        <!-- Form -->
+                        <form class="form-row">
+                            <!-- First name  -->
+                            <div class="form-group col-12 col-md-6">
+                                <label class="form-label" for="fname">Nome</label>
+                                <input type="text" id="fname" class="form-control" placeholder="Nome" required="">
+                            </div>
+                            <!-- Last name  -->
+                            <div class="form-group col-12 col-md-6">
+                                <label class="form-label" for="lname">Sobrenome</label>
+                                <input type="text" id="lname" class="form-control" placeholder="Sobrenome" required="">
+                            </div>
+                            <!-- Phone number  -->
+                            <div class="form-group col-12 col-md-12">
+                                <label class="form-label" for="phone">Telefone <span class="text-muted">(Opicional)</span></label>
+                                <input type="text" id="phone" class="form-control" placeholder="Telefone" required="">
+                            </div>
+                            <!-- Address  -->
+                            <div class="form-group col-12 col-md-12">
+                                <label class="form-label" for="address">Endereço</label>
+                                <input type="text" id="address" class="form-control" placeholder="Address" required="">
+                            </div>
+                            <!-- Country  -->
+                            <div class="form-group col-12 col-md-4">
+                                <label class="form-label">Country</label>
+                                <div class="dropdown bootstrap-select" style="width: 100%;">
+                                    <select class="selectpicker" data-width="100%">
+                                        <option value="">Select Country</option>
+                                        <option value="1">Brasil</option>
+                                        <option value="2">França</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- Zip code  -->
+                            <div class="form-group col-12 col-md-4">
+                                <label class="form-label" for="zipCode">CEP</label>
+                                <input type="text" id="zipCode" class="form-control" placeholder="CEP" required="">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Card -->
+                <div class="card  mb-3 mb-lg-0">
+                    <!-- Card header -->
+                    <div class="card-header">
+                        <h3 class="mb-0">Forma de Pagamento</h3>
+                    </div>
+                    <!-- Card body -->
+                    <div class="card-body">
+                        <!-- Radio -->
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="cardRadioone" name="cardRadioone" class="custom-control-input" checked="">
+                            <label class="custom-control-label " for="cardRadioone">
+                                <span class="  text-dark">
+                                    Cartão de crédito
+                                </span>
+                            </label>
+                        </div>
+                        <!-- Radio -->
+                        <div class="custom-control custom-radio custom-control-inline">
+                            <input type="radio" id="cardRadioTwo" name="cardRadioone" class="custom-control-input">
+                            <label class="custom-control-label" for="cardRadioTwo"><span class="  text-dark">PayPal</span></label>
+                        </div>
+                        <!-- Form -->
+                        <form class="form-row " id="cardpayment">
+                            <!-- Card number -->
+                            <div class="form-group mt-4 col-12">
+                                <!-- Card Number -->
+                                <label class="d-flex justify-content-between align-items-center form-label" for="cc-mask">
+                                    Número do cartão <span><i class="fab fa-cc-amex mr-1  text-primary"></i><i class="fab fa-cc-mastercard mr-1  text-primary"></i> <i class="fab fa-cc-discover mr-1  text-primary"></i> <i class="fab fa-cc-visa  text-primary"></i></span>
+                                </label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="cc-mask" data-inputmask="'mask': '9999 9999 9999 9999'" inputmode="numeric" placeholder="xxxx-xxxx-xxxx-xxxx" required="">
+                                    <div class="input-group-append border-left-0">
+                                        <span class="input-group-text" id="basic-addon2"><i class="fe fe-lock "></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Month -->
+                            <div class="form-group col-12 col-md-4">
+                                <label class="form-label">Mês</label>
+                                <div class="dropdown bootstrap-select" style="width: 100%;">
+                                    <select class="selectpicker" data-width="100%">
+                                        <option value="">Month</option>
+                                        <option value="June">June</option>
+                                        <option value="July">July</option>
+                                        <option value="August">August</option>
+                                        <option value="Sep">Sep</option>
+                                        <option value="Oct">Oct</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- Year -->
+                            <div class="form-group col-12 col-md-4">
+                                <label class="form-label">Ano</label>
+                                <div class="dropdown bootstrap-select" style="width: 100%;">
+                                    <select class="selectpicker" data-width="100%">
+                                        <option value="">Year</option>
+                                        <option value="June">2018</option>
+                                        <option value="July">2019</option>
+                                        <option value="August">2020</option>
+                                        <option value="Sep">2021</option>
+                                        <option value="Oct">2022</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- CVV Code -->
+                            <div class="form-group col-12 col-md-4">
+                                <label for="cvv" class="form-label">Código de segurança <i class="fe fe-help-circle ml-1 font-size-xs" data-toggle="tooltip" data-placement="right" title="" data-original-title="A 3 - digit number, typically printed on the back of a card."></i></label>
+                                <input type="password" class="cc-inputmask form-control" name="cvv" id="cvv" placeholder="xxx" maxlength="3">
+                            </div>
+                            <!-- Name on card -->
+                            <div class="form-group col-12">
+                                <label for="nameoncard" class="form-label">Nome</label>
+                                <input id="nameoncard" type="text" class="form-control" name="nameoncard" placeholder="Nome" required="">
+                            </div>                                                        
+                            <div class="col-md-4 col-12">
+                                <!-- Button -->
+                                <div>
+                                    <button type="submit" class="btn btn-primary mb-3 mb-lg-0 mr-4">
+                                        Pagar
+                                    </button>
+                                </div>
+                            </div>                            
+                        </form>
+                        <!-- Paypal -->
+                        <form id="internetpayment" style="display: none;">
+                            <div class="form-group mt-4 ">
+                                <label for="paypalemail" class="form-label">PayPal</label>
+                                <input type="email" id="paypalemail" name="paypalemail" placeholder="Digite seu email do PayPal" class="form-control" required="">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Pagar via PayPal</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-12">
+                <!-- Card -->
+                <div class="card  border-0 mb-3">
+                    <!-- Card body -->
+                    <div class="p-5 text-center">
+                        <div class="mb-5 mt-3">
+                            <h1 class="font-weight-bold">Compra de créditos</h1>
+                            <p class="mb-0 ">
+                                O valor abaixo será adicionado a sua conta após a confirmação do pagamento.
+                            </p>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <span class="h3 mb-0 font-weight-bold text-primary">R$</span>
+                            <div id="payment-value" class="display-4 font-weight-bold text-primary">10</div>
+                            <span class=" align-self-end mb-1"> reais</span>
+                        </div>
+                    </div>
+                    <hr class="m-0">
+                    <div class="p-5">
+                        <h4 class="font-weight-bold mb-4">Adicionar outro valor:</h4>
+                        <!-- Year -->
+                        <div class="form-group col-12 col-md-12">
+                            <div class="dropdown bootstrap-select" style="width: 100%;">
+                                <select id="new-credit-value" class="selectpicker" data-width="100%">
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="30">30</option>
+                                    <option value="40">40</option>
+                                    <option value="50">50</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- hr -->
+                    <hr class="m-0">
+                    <div class="p-4">
+                        <button id="change-value" class="btn btn-outline-primary">Alterar o valor</button>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(".main-warp-container").addClass("full-screen-container");
+
+        $("#change-value").click(() => {
+            var value = $("#new-credit-value").val();
+            console.log(value)
+            $("#payment-value").html(value);
+        });
+    });
+</script>
