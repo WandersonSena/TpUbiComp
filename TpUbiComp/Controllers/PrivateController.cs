@@ -38,6 +38,7 @@ namespace TpUbiComp.Controllers
                 model.CityName = "Belo Horizonte";
                 var avaliableApps = new List<ApplicationModel>();
                 avaliableApps.Add(new ApplicationModel (){ ApplicationName = "Moovit", ApplicationUrl = "https://moovitapp.com/belo_horizonte-843/poi/en" });
+                avaliableApps.Add(new ApplicationModel() { ApplicationName = "Here WeGo", ApplicationUrl = "https://wego.here.com/" });
                 model.ApplicationList = avaliableApps;
                 ViewData["Model"] = model;
                 return View();
@@ -48,7 +49,7 @@ namespace TpUbiComp.Controllers
                 var avaliableApps = new List<ApplicationModel>();
                 avaliableApps.Add(new ApplicationModel() { ApplicationName = "Moovit", ApplicationUrl = "https://moovitapp.com/sao_paulo-242/poi/en" });
                 avaliableApps.Add(new ApplicationModel() { ApplicationName = "Trafi", ApplicationUrl = "https://web.trafi.com/br/saopaulo" });
-                avaliableApps.Add(new ApplicationModel() { ApplicationName = "CityMapper", ApplicationUrl = "https://citymapper.com/sao-paulo" });
+                avaliableApps.Add(new ApplicationModel() { ApplicationName = "Here WeGo", ApplicationUrl = "https://wego.here.com/" });
                 model.ApplicationList = avaliableApps;
                 ViewData["Model"] = model;
                 return View();
@@ -59,6 +60,7 @@ namespace TpUbiComp.Controllers
                 var avaliableApps = new List<ApplicationModel>();
                 avaliableApps.Add(new ApplicationModel() { ApplicationName = "Moovit", ApplicationUrl = "https://moovitapp.com/rio_de_janeiro-322/poi/en" });
                 avaliableApps.Add(new ApplicationModel() { ApplicationName = "Trafi", ApplicationUrl = "https://web.trafi.com/br/rio" });
+                avaliableApps.Add(new ApplicationModel() { ApplicationName = "Here WeGo", ApplicationUrl = "https://wego.here.com/" });
                 model.ApplicationList = avaliableApps;
                 ViewData["Model"] = model;
                 return View();
@@ -68,8 +70,8 @@ namespace TpUbiComp.Controllers
                 model.CityName = "Paris";
                 var avaliableApps = new List<ApplicationModel>();
                 avaliableApps.Add(new ApplicationModel() { ApplicationName = "Moovit", ApplicationUrl = "https://moovitapp.com/paris-662/poi/en" });
-                avaliableApps.Add(new ApplicationModel() { ApplicationName = "CityMapper", ApplicationUrl = "https://citymapper.com/paris?set_region=fr-paris" });
-                avaliableApps.Add(new ApplicationModel() { ApplicationName = "Vélib", ApplicationUrl = "https://www.velib-metropole.fr/pt/map#/" });
+                avaliableApps.Add(new ApplicationModel() { ApplicationName = "Flixbus", ApplicationUrl = "https://global.flixbus.com/bus-routes" });
+                avaliableApps.Add(new ApplicationModel() { ApplicationName = "Here WeGo", ApplicationUrl = "https://wego.here.com/" });
                 model.ApplicationList = avaliableApps;
                 ViewData["Model"] = model;
                 return View();
