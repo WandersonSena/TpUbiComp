@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -60,12 +61,33 @@ namespace TpUbiComp.Controllers
 
         public IActionResult Profile()
         {
+            var idUser = HttpContext.Session.GetInt32("userId");
+            TempData["userId"] = idUser;
+            var user = _userContext.User.Where(u => u.Id == idUser).FirstOrDefault();
+            ViewData["Model"] = user;
             return View();
         }
 
         public IActionResult BuyCredits()
         {
             return View();
+        }
+
+        [HttpPost]
+        public string UpdateProfile(Models.User userModel)
+        {
+            var user = _userContext.User.Where(u => u.Id == HttpContext.Session.GetInt32("userId")).FirstOrDefault();
+            user.FirstName = userModel.FirstName;
+            user.LastName = userModel.LastName;
+            user.Cellphone = userModel.Cellphone;
+            user.Birthdate = userModel.Birthdate;
+            user.Address = userModel.Address;
+            user.Country = userModel.Country;
+
+            _userContext.User.Update(user);
+            _userContext.SaveChanges();
+
+            return "/Private/Profile";
         }
     }
 }

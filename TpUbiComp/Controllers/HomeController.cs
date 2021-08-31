@@ -58,6 +58,7 @@ namespace TpUbiComp.Controllers
             if (user != null)
             {
                 TempData["userId"] = user.Id;
+                HttpContext.Session.SetInt32("userId", user.Id);
                 return "/private";
             }
             return "/";

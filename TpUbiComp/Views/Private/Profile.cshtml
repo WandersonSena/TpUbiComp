@@ -1,4 +1,16 @@
-﻿<partial name="~/Views/Shared/_PrivateNavbar.cshtml" />
+﻿@{
+    TpUbiComp.Models.User viewModel;
+    try
+    {
+        viewModel = (User)ViewData["Model"];
+    }
+    catch
+    {
+        viewModel = new User();
+    }
+}
+
+<partial name="~/Views/Shared/_PrivateNavbar.cshtml" />
 
 <div class="pt-5 pb-5">
     <div class="container xl-container">
@@ -9,7 +21,7 @@
                 <div class="card">
                     <!-- Card header -->
                     <div class="card-header">
-                        <h3 class="mb-0">Detalhes do perfil</h3>                        
+                        <h3 class="mb-0">Detalhes do perfil</h3>
                     </div>
                     <!-- Card body -->
                     <div class="card-body">
@@ -29,6 +41,18 @@
                             </div>
                         </div>
                         <hr class="my-5">
+                        <div class="d-lg-flex align-items-center justify-content-between">
+                            <div class="d-flex align-items-center mb-4 mb-lg-0">
+                                <h4 class="mb-0">Seu saldo</h4><br>
+                                <p class="mb-0 lead ml-3">
+                                    R$@viewModel.Credit
+                                </p>
+                            </div>
+                            <div>
+                                <a href="/Private/BuyCredits" class="btn btn-outline-white btn-sm">Adicionar créditos</a>
+                            </div>
+                        </div>
+                        <hr class="my-5">
                         <div>
                             <h4 class="mb-0">Detalhes do cadastro</h4>
                             <p class="mb-4">
@@ -39,55 +63,36 @@
                                 <!-- First name -->
                                 <div class="form-group col-12 col-md-6">
                                     <label class="form-label" for="fname">Nome</label>
-                                    <input type="text" id="fname" class="form-control" placeholder="First Name" required="">
+                                    <input type="text" id="fname" class="form-control" placeholder="First Name" required="" value="@viewModel.FirstName">
                                 </div>
                                 <!-- Last name -->
                                 <div class="form-group col-12 col-md-6">
                                     <label class="form-label" for="lname">Sobrenome</label>
-                                    <input type="text" id="lname" class="form-control" placeholder="Last Name" required="">
+                                    <input type="text" id="lname" class="form-control" placeholder="Last Name" required="" value="@viewModel.LastName">
                                 </div>
                                 <!-- Phone -->
                                 <div class="form-group col-12 col-md-6">
                                     <label class="form-label" for="phone">Telefone</label>
-                                    <input type="text" id="phone" class="form-control" placeholder="Phone" required="">
+                                    <input type="text" id="phone" class="form-control" placeholder="Phone" required="" value="@viewModel.Cellphone">
                                 </div>
                                 <!-- Birthday -->
                                 <div class="form-group col-12 col-md-6">
                                     <label class="form-label" for="birth">Data de nascimento</label>
-                                    <input class="form-control" type="date" placeholder="Birth of Date" id="birth" name="birth" readonly="readonly">
+                                    <input class="form-control" type="date" placeholder="Birth of Date" id="birth" name="birth" value="@viewModel.Birthdate">
                                 </div>
                                 <!-- Address -->
                                 <div class="form-group col-12 col-md-6">
                                     <label class="form-label" for="address">Endereço</label>
-                                    <input type="text" id="address" class="form-control" placeholder="Address" required="">
+                                    <input type="text" id="address" class="form-control" placeholder="Address" required="" value="@viewModel.Address">
                                 </div>
                                 <!-- State -->
                                 <div class="form-group col-12 col-md-6">
-                                    <label class="form-label">Estado</label>
-                                    <div class="dropdown bootstrap-select" style="width: 100%;">
-                                        <select class="selectpicker" data-width="100%">
-                                            <option value="">Select State</option>
-                                            <option value="1">Gujarat</option>
-                                            <option value="2">Rajasthan</option>
-                                            <option value="3">Maharashtra</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <!-- Country -->
-                                <div class="form-group col-12 col-md-6">
-                                    <label class="form-label">Páis</label>
-                                    <div class="dropdown bootstrap-select" style="width: 100%;">
-                                        <select class="selectpicker" data-width="100%">
-                                            <option value="">Select Country</option>
-                                            <option value="1">India</option>
-                                            <option value="2">UK</option>
-                                            <option value="3">USA</option>
-                                        </select>
-                                    </div>
+                                    <label class="form-label">País</label>
+                                    <input type="text" id="country" class="form-control" placeholder="Address" required="" value="@viewModel.Country">
                                 </div>
                                 <div class="col-12">
                                     <!-- Button -->
-                                    <button class="btn btn-primary" type="submit">
+                                    <button class="btn btn-primary btn-update-user" type="button">
                                         Atualizar perfil
                                     </button>
                                 </div>
@@ -102,5 +107,19 @@
 <script>
     $(document).ready(function () {
         $(".main-warp-container").addClass("full-screen-container");
+        $(".btn-update-user").click(() => {
+            $.post("/Private/UpdateProfile",
+                {
+                    FirstName: $("#fname").val(),
+                    LastName: $("#lname").val(),
+                    Cellphone: $("#phone").val(),
+                    Birthdate: $("#birth").val(),
+                    Address: $("#address").val(),
+                    Country: $("#country").val()
+                },
+                (data) => {
+                    window.location = data;
+                })
+        })
     });
 </script>

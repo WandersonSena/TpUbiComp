@@ -2,6 +2,7 @@
 @{ 
     var context = new UserContext();
     var idUser = Convert.ToInt32(TempData["userId"]);
+    TempData["userId"] = idUser;
     var userModel = new User();
     if (idUser != 0)
     {
