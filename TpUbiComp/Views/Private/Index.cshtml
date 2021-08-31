@@ -1,4 +1,14 @@
-﻿@{
+﻿@using TpUbiComp.Models
+@{
+    List<Locale> viewModel;
+    try
+    {
+        viewModel = (List<Locale>)ViewData["Model"];
+    }
+    catch
+    {
+        viewModel = new List<Locale>();
+    }
     ViewData["Title"] = "Selecionar Cidade";
 }
 
@@ -18,12 +28,12 @@
                         <div class="form-group">
                             <select class="selectpicker city-selector" data-width="100%">
                                 <option value="">Selecionar Cidade</option>
-                                <option value="1">Belo Horizonte</option>
-                                <option value="2">São Paulo</option>
-                                <option value="3">Rio de Janeiro</option>
-                                <option value="4">Paris</option>
+                                @foreach (var locale in viewModel)
+                                {
+                                    <option value="@locale.Id">@locale.City</option>
+                                }
                             </select>
-                        </div>                        
+                        </div>
                         <div>
                             <!-- Button -->
                             <button type="button" class="btn btn-primary btn-block btn-select-city">Escolher</button>
@@ -41,5 +51,5 @@
             var selectedCity = $('.selectpicker').val();
             window.location.assign(`/Private/City?idCity=${selectedCity}`);
         })
-    });    
+    });
 </script>

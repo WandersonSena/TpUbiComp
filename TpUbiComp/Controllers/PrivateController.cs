@@ -20,13 +20,14 @@ namespace TpUbiComp.Controllers
 
         public IActionResult Index()
         {
+            var cities = _userContext.Locale.ToList();
+            ViewData["Model"] = cities;
             return View();
         }
 
         [HttpGet]
         public ActionResult Login()
         {
-            //var user = _userContext.User.Where(u => u.Email == "" && u.Password == "").FirstOrDefault();
             return View();
         }
 
