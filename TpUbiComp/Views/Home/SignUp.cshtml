@@ -47,11 +47,11 @@
     $(document).ready(function () {
         $(".create-user").click(() => {
             console.log("TEste");
-            $.ajax({
-                method: "POST",
-                url: "/Home/CreateUser",
-                data: { Name: $("#username"), Email: $("#email"), Password: $("#password") }
-            })
+            $.post("/Home/CreateUser",
+                { Name: $("#username").val(), Email: $("#email").val(), Password: $("#password").val() },
+                () => {
+                    window.location = '/'
+                })
         })
     });
 </script>

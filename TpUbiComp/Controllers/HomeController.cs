@@ -49,7 +49,12 @@ namespace TpUbiComp.Controllers
         [HttpPost]
         public ActionResult CreateUser(DTONewUser newUser)
         {
-            _userContext.Add(new { FistName = newUser.Name, Email = newUser.Eamil, Password = newUser.Password });
+            _userContext.User.Add(new User() { 
+                FirstName = newUser.Name,
+                Email = newUser.Email,
+                Password = newUser.Password
+            });
+
             _userContext.SaveChanges();
             return View("Index");
         }

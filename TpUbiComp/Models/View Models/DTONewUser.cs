@@ -7,7 +7,7 @@ namespace TpUbiComp.Models.View_Models
 {
     public class DTONewUser
     {
-        public string Eamil { get; set; }
+        public string Email { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
     }
