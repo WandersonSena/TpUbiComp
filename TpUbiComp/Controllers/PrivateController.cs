@@ -13,7 +13,7 @@ namespace TpUbiComp.Controllers
     {
         private readonly UserContext _userContext;
 
-        public PrivateController(/*UserContext userContext*/)
+        public PrivateController()
         {
             _userContext = new UserContext();
         }
@@ -32,52 +32,29 @@ namespace TpUbiComp.Controllers
 
         public IActionResult City(int idCity)
         {
-            var model = new CityModel();
-            if (idCity == 1)
-            {
-                model.CityName = "Belo Horizonte";
-                var avaliableApps = new List<ApplicationModel>();
-                avaliableApps.Add(new ApplicationModel (){ ApplicationName = "Moovit", ApplicationUrl = "https://moovitapp.com/belo_horizonte-843/poi/en" });
-                avaliableApps.Add(new ApplicationModel() { ApplicationName = "Here WeGo", ApplicationUrl = "https://wego.here.com/" });
-                model.ApplicationList = avaliableApps;
-                ViewData["Model"] = model;
-                return View();
-            }
-            else if (idCity == 2)
-            {
-                model.CityName = "São Paulo";
-                var avaliableApps = new List<ApplicationModel>();
-                avaliableApps.Add(new ApplicationModel() { ApplicationName = "Moovit", ApplicationUrl = "https://moovitapp.com/sao_paulo-242/poi/en" });
-                avaliableApps.Add(new ApplicationModel() { ApplicationName = "Trafi", ApplicationUrl = "https://web.trafi.com/br/saopaulo" });
-                avaliableApps.Add(new ApplicationModel() { ApplicationName = "Here WeGo", ApplicationUrl = "https://wego.here.com/" });
-                model.ApplicationList = avaliableApps;
-                ViewData["Model"] = model;
-                return View();
-            }
-            else if (idCity == 3)
-            {
-                model.CityName = "Rio de Janeiro";
-                var avaliableApps = new List<ApplicationModel>();
-                avaliableApps.Add(new ApplicationModel() { ApplicationName = "Moovit", ApplicationUrl = "https://moovitapp.com/rio_de_janeiro-322/poi/en" });
-                avaliableApps.Add(new ApplicationModel() { ApplicationName = "Trafi", ApplicationUrl = "https://web.trafi.com/br/rio" });
-                avaliableApps.Add(new ApplicationModel() { ApplicationName = "Here WeGo", ApplicationUrl = "https://wego.here.com/" });
-                model.ApplicationList = avaliableApps;
-                ViewData["Model"] = model;
-                return View();
-            }
-            else if (idCity == 4)
-            {
-                model.CityName = "Paris";
-                var avaliableApps = new List<ApplicationModel>();
-                avaliableApps.Add(new ApplicationModel() { ApplicationName = "Moovit", ApplicationUrl = "https://moovitapp.com/paris-662/poi/en" });
-                avaliableApps.Add(new ApplicationModel() { ApplicationName = "Flixbus", ApplicationUrl = "https://global.flixbus.com/bus-routes" });
-                avaliableApps.Add(new ApplicationModel() { ApplicationName = "Here WeGo", ApplicationUrl = "https://wego.here.com/" });
-                model.ApplicationList = avaliableApps;
-                ViewData["Model"] = model;
-                return View();
-            }
-            ViewData["Model"] = new CityModel();
-            return View();
+            var model = new CityModel();            
+            var locale = _userContext.Locale.Where(l => l.Id == idCity).FirstOrDefault();
+            var aplicationLocale = _userContext.ApplicationLocale
+                .Where(a => a.Locale == locale)
+                .Join(
+                    _userContext.Application,
+                    appLocale => appLocale.Application,
+                    application => application,
+                    (appLocale, application) => new
+                    {
+                        ApplicationName = application.Name,
+                        ApplicationUrl = appLocale.Url,
+                        Locale = appLocale.Locale
+                    }
+                ).ToList();
+            var avaliableApps = new List<ApplicationModel>();
+            foreach (var app in aplicationLocale)
+                avaliableApps.Add(new ApplicationModel (){ ApplicationName = app.ApplicationName, ApplicationUrl = app.ApplicationUrl });
+
+            model.CityName = locale.City;
+            model.ApplicationList = avaliableApps;
+            ViewData["Model"] = model;
+            return View();            
         }
 
         public IActionResult Profile()
