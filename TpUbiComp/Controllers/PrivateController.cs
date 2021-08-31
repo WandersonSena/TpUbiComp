@@ -73,6 +73,15 @@ namespace TpUbiComp.Controllers
             return View();
         }
 
+        public IActionResult Recipt()
+        {
+            var idUser = HttpContext.Session.GetInt32("userId");
+            var user = _userContext.User.Where(u => u.Id == idUser).FirstOrDefault();
+            ViewData["Model"] = user;
+            TempData["userId"] = idUser;
+            return View();
+        }
+
         [HttpPost]
         public string UpdateProfile(Models.User userModel)
         {
@@ -100,6 +109,21 @@ namespace TpUbiComp.Controllers
             _userContext.SaveChanges();
 
             return "/Private/Profile";
+        }
+
+        [HttpPost]
+        public string BuyCard(int cardValue)
+        {
+            var user = _userContext.User.Where(u => u.Id == HttpContext.Session.GetInt32("userId")).FirstOrDefault();
+            if(user.Credit < cardValue)
+                return "/Private/Profile";
+
+            user.Credit -= cardValue;
+            _userContext.User.Update(user);
+            _userContext.SaveChanges();
+            TempData["cardValue"] = cardValue;
+
+            return "/Private/Recipt";
         }
     }
 }

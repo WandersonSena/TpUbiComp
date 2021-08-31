@@ -102,6 +102,71 @@
                 </div>
             </div>
         </div>
+        <div class="row mt-3">
+            <div class="col-lg-3 col-md-6 col-12">
+                <!-- Card -->
+                <div class="card  mb-4 card-hover d-flex">
+                    <a href="#" class="card-img-top align-self-center"><img src="/images/cartao-otimo.png" alt="" class="card-img-top rounded-top-md buy-card-image"></a>
+                    <!-- Card body -->
+                    <div class="card-body">
+                        <h3 class="h4 mb-2 text-truncate-line-2 ">
+                            <a href="#" class="text-inherit">
+                                Cartão para mobilidade dentro de Belo Horizonte
+                            </a>
+                        </h3>                        
+                    </div>
+                    <!-- Card footer -->
+                    <div class="card-footer align-content-center">
+                        <!-- Button -->
+                        <button class="btn btn-secondary buy-card" type="button" data-card-value="10">
+                            Comprar cartão (R$10,00)
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <!-- Card -->
+                <div class="card  mb-4 card-hover">
+                    <a href="#" class="card-img-top"><img src="/images/bilhete-unico.png" alt="" class="card-img-top rounded-top-md buy-card-image"></a>
+                    <!-- Card body -->
+                    <div class="card-body">
+                        <h3 class="h4 mb-2 text-truncate-line-2 ">
+                            <a href="#" class="text-inherit">
+                                Cartão para mobilidade dentro de São Paulo
+                            </a>
+                        </h3>                        
+                    </div>
+                    <!-- Card footer -->
+                    <div class="card-footer">
+                        <!-- Button -->
+                        <button class="btn btn-secondary buy-card" type="button" data-card-value="20">
+                            Comprar cartão (R$20,00)
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-12">
+                <!-- Card -->
+                <div class="card  mb-4 card-hover">
+                    <a href="#" class="card-img-top"><img src="/images/riocard.png" alt="" class="card-img-top rounded-top-md buy-card-image"></a>
+                    <!-- Card body -->
+                    <div class="card-body">
+                        <h3 class="h4 mb-2 text-truncate-line-2 ">
+                            <a href="#" class="text-inherit">
+                                Cartão para mobilidade dentro do Rio de Janeiro
+                            </a>
+                        </h3>
+                    </div>
+                    <!-- Card footer -->
+                    <div class="card-footer">
+                        <!-- Button -->
+                        <button class="btn btn-secondary buy-card" type="button" data-card-value="30">
+                            Comprar cartão (R$30,00)
+                        </button>
+                    </div>
+                </div>
+            </div>            
+        </div>
     </div>
 </div>
 <script>
@@ -120,6 +185,20 @@
                 (data) => {
                     window.location = data;
                 })
-        })
+        });
+        $(".buy-card").click(function () {
+            var cardValue = parseInt($(this).data('card-value'));
+            if (parseInt(@viewModel.Credit) < cardValue) {
+                alert("Erro: Saldo insuficiente!")
+            }
+            else {
+                $.post("/Private/BuyCard", {
+                    cardValue: cardValue
+                },
+                (data) => {
+                    window.location = data;
+                })
+            }            
+        });
     });
 </script>

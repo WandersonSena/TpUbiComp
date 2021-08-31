@@ -13,3 +13,8 @@
 .xl-container {
     max-width: 1500px;
 }
+
+.buy-card-image{
+    width: auto;
+    max-height: 200px;
+}

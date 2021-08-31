@@ -1,0 +1,87 @@
+﻿@{
+    TpUbiComp.Models.User viewModel;
+    try
+    {
+        viewModel = (User)ViewData["Model"];
+    }
+    catch
+    {
+        viewModel = new User();
+    }
+    var cardValue = TempData["cardValue"];
+}
+
+<partial name="~/Views/Shared/_PrivateNavbar.cshtml" />
+
+<div class="col-lg-9 col-md-8 col-12 mt-5 offset-md-2">
+    <!-- Card -->
+    <div class="card border-0" id="invoice">
+        <!-- Card body -->
+        <div class="card-body">
+            <div class="d-flex justify-content-between mb-6">
+                <div>
+                    <!-- Img -->
+                    <h4 class="mb-0">UbiComp App</h4>
+                    <small>ID do Recibo: #1001</small>
+                </div>
+                <div>
+                    <a href="#" class="text-muted print-link no-print"><i class="fe fe-printer"></i></a>
+                </div>
+            </div>
+            <!-- Row -->
+            <div class="row">
+                <div class="col-md-8 col-12">
+                    <span class="fs-6">Compra realizada por</span>
+                    <h5 class="mb-3">@viewModel.FirstName @viewModel.LastName</h5>
+                    <p>@viewModel.Address <br> @viewModel.Country </p>
+                </div>                
+            </div>
+            <!-- Row -->
+            <div class="row mb-5">
+                <div class="col-8">
+                    <span class="fs-6">ID do Recibo</span>
+                    <h6 class="mb-0">#1001</h6>
+                </div>
+                <div class="col-4">
+                    <span class="fs-6">Data da compra</span>
+                    <h6 class="mb-0">31 Agosto 2021</h6>
+                </div>
+            </div>
+            <!-- Table -->
+            <div class="table-responsive mb-12">
+                <table class="table mb-0 text-nowrap table-borderless">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">Item</th>
+                            <th scope="col">Quantidade</th>
+                            <th scope="col">Preço unitário</th>
+                            <th scope="col">Valor total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="text-dark">
+                            <td>
+                                Cartão para mobilidade urbana
+                            </td>
+                            <td>1</td>
+                            <td>R$@cardValue</td>
+                            <td>R$@cardValue</td>
+                        </tr>
+                    </tbody>                    
+                </table>
+
+                <a href="/Private/Profile" class="btn btn-primary btn-sm mt-3">Voltar</a>
+            </div>
+            <!-- Short note -->
+            <p class="border-top pt-3 mb-0 ">
+                Notas: Apresente esse cupom em qualquer serviço de atendimento presencial para a retirada do cartão.
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $(".main-warp-container").addClass("full-screen-container");        
+    });
+</script>
