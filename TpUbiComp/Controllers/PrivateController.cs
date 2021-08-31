@@ -89,5 +89,17 @@ namespace TpUbiComp.Controllers
 
             return "/Private/Profile";
         }
+
+        [HttpPost]
+        public string AddCredits(int credtAmmount)
+        {
+            var user = _userContext.User.Where(u => u.Id == HttpContext.Session.GetInt32("userId")).FirstOrDefault();
+            user.Credit += credtAmmount;
+
+            _userContext.User.Update(user);
+            _userContext.SaveChanges();
+
+            return "/Private/Profile";
+        }
     }
 }

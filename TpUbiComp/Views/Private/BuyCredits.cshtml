@@ -143,7 +143,7 @@
                             <div class="col-md-4 col-12">
                                 <!-- Button -->
                                 <div>
-                                    <button type="submit" class="btn btn-primary mb-3 mb-lg-0 mr-4">
+                                    <button type="button" class="btn btn-primary mb-3 mb-lg-0 mr-4 btn-add-credits">
                                         Pagar
                                     </button>
                                 </div>
@@ -155,7 +155,7 @@
                                 <label for="paypalemail" class="form-label">PayPal</label>
                                 <input type="email" id="paypalemail" name="paypalemail" placeholder="Digite seu email do PayPal" class="form-control" required="">
                             </div>
-                            <button type="submit" class="btn btn-primary">Pagar via PayPal</button>
+                            <button type="button" class="btn btn-primary btn-add-credits">Pagar via PayPal</button>
                         </form>
                     </div>
                 </div>
@@ -211,6 +211,17 @@
         $("#change-value").click(() => {
             var value = $("#new-credit-value").val();
             $("#payment-value").html(value);
+        });
+
+        $(".btn-add-credits").click(() => {
+            var value = $("#new-credit-value").val();
+            $.post("/Private/AddCredits",
+                {
+                    credtAmmount: value
+                },
+                (data) => {
+                    window.location = data;
+                })
         });
     });
 </script>
