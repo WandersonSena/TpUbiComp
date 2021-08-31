@@ -29,12 +29,6 @@ namespace TpUbiComp.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Index(string email, string password)
-        {
-            return View("Privacy");
-        }
-
         public IActionResult Privacy()
         {
             return View();
@@ -46,19 +40,6 @@ namespace TpUbiComp.Controllers
 
         }
 
-        [HttpPost]
-        public ActionResult CreateUser(DTONewUser newUser)
-        {
-            _userContext.User.Add(new User() { 
-                FirstName = newUser.Name,
-                Email = newUser.Email,
-                Password = newUser.Password
-            });
-
-            _userContext.SaveChanges();
-            return View("Index");
-        }
-
         public IActionResult ForgotPassword()
         {
             return View();
@@ -68,6 +49,32 @@ namespace TpUbiComp.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [HttpPost]
+        public string Login(string email, string password)
+        {
+            var user = _userContext.User.Where(u => u.Email == email && u.Password == password).FirstOrDefault();
+            if (user != null)
+            {
+                TempData["userId"] = user.Id;
+                return "/private";
+            }
+            return "/";
+        }
+
+        [HttpPost]
+        public string CreateUser(DTONewUser newUser)
+        {
+            _userContext.User.Add(new User()
+            {
+                FirstName = newUser.Name,
+                Email = newUser.Email,
+                Password = newUser.Password
+            });
+            _userContext.SaveChanges();
+
+            return "/";
         }
     }
 }

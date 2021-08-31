@@ -46,11 +46,10 @@
 <script>
     $(document).ready(function () {
         $(".create-user").click(() => {
-            console.log("TEste");
             $.post("/Home/CreateUser",
                 { Name: $("#username").val(), Email: $("#email").val(), Password: $("#password").val() },
-                () => {
-                    window.location = '/'
+                (data) => {
+                    window.location = data;
                 })
         })
     });

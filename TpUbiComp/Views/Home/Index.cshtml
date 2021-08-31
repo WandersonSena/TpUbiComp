@@ -37,7 +37,7 @@
                         </div>
                         <div>
                             <!-- Button -->
-                            <a href="/Private/index" class="btn btn-primary btn-block">Entrar</a>
+                            <button type="button" class="btn btn-primary btn-block btn-login">Entrar</button>
                         </div>
                     </form>
                 </div>
@@ -45,4 +45,14 @@
         </div>
     </div>
 </div>
- 
+<script>
+    $(document).ready(function () {
+        $(".btn-login").click(() => {
+            $.post("/Home/Login",
+                { email: $("#email").val(), password: $("#password").val() },
+                (data) => {
+                    window.location = data;
+                })
+        })
+    });
+</script>
