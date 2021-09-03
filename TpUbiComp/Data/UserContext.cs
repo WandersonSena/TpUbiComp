@@ -16,7 +16,7 @@ namespace TpUbiComp.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Password=@treinus;Persist Security Info=True;User ID=sa;Initial Catalog=UbicompApp;Data Source=localhost");
+            optionsBuilder.UseSqlServer("Password=" + "Utilizar a senha do banco de dados" + ";Persist Security Info=True;User ID=" + "Utilizar o usuário do banco de dados" + ";Initial Catalog=UbicompApp;Data Source=localhost");
         }
     }
 }
